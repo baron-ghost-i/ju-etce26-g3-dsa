@@ -181,39 +181,3 @@ int main(){
 	}		
 	return 0;
 }
-
-/*
-int main(){
-	node *a = getnode(1);
-	int l, STAT = 0;
-	display(a);
-	
-	insert(&a, 0, 0);
-	display(a);
-	
-	insert(&a, 2, 2);
-	display(a);
-	
-	insert(&a, 1, 3);
-	display(a);
-	
-	del(&a, 1, &STAT);
-	display(a);
-	
-	del(&a, 2, &STAT);
-	display(a);
-	
-	del(&a, 10, &STAT);
-	display(a);
-	
-	del(&a, 1, &STAT);
-	display(a);
-	
-	del(&a, 0, &STAT);
-	display(a);
-
-	del(&a, 0, &STAT);
-	display(a);
-	
-	return 0;
-}*/
