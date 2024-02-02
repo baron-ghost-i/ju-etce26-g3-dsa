@@ -84,7 +84,7 @@ int delete(node** head, int index, int* STAT){
 		free(temp);
 	}
 	
-	if(l==0) *head = NULL;
+	if((l-1)==0) *head = NULL;
 	
 	return item;
 }
