@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MENU ("\nOptions\n1. New value\n2. New operator\n3. Show current stack\n4. Terminate.\nEnter choice: ")
+#define MENU ("\nOPTIONS\n1. Enter value\n2. Enter operator\n3. Show current stack\n4. Terminate.\nEnter (Choice, Input): ")
 
 typedef struct PFStack{
 	float item;
@@ -19,12 +19,15 @@ PFS* newStack(float data){
 
 void display(PFS* pf){
 	printf("\n");
-	if(!pf) printf("Empty stack");
-	while(pf){
-		printf("%f ", pf->item);
-		pf = pf->below;
+	if(!pf) printf("Empty stack\n");
+	else{
+		while(pf->below) pf = pf->below; //traverse to bottom of stack
+		while(pf){
+			printf("%f ", pf->item);
+			pf= pf->above;
+		} //print from bottom of stack
+		printf("\n");
 	}
-	printf("\n");
 }
 
 void push(PFS** stack, float data){
@@ -50,7 +53,6 @@ float pop(PFS** top){
 void clear(PFS** stack){
 	PFS* temp = *stack;
 	while(temp){
-		printf("\n\nTEMP: %f\n\n", temp->item);
 		pop(stack);
 		temp = *stack;
 	}
@@ -68,22 +70,27 @@ void operate(PFS** stack, char op, int* STAT){
 		*STAT = 1;
 		return;
 	}
-	printf("\nOPERATOR %c\n", op);
 	if(op=='+') push(stack, pop(stack)+pop(stack));
-	else if(op=='-') push(stack, pop(stack)-pop(stack));
+	else if(op=='-'){
+		temp1 = pop(stack);
+		temp2 = pop(stack);
+		push(stack, temp2-temp1);
+	}
 	else if(op=='*') push(stack, pop(stack)*pop(stack));
 	else if(op=='/'){
 		temp1 = pop(stack);
 		temp2 = pop(stack);
-		if(temp2==0){
+		if(temp1==0){
 			printf("Error: cannot divide by 0\n");
+			push(stack, temp2);
+			push(stack, temp1);
 			*STAT = 1;
 			return;
 		}
-		push(stack, temp1/temp2);
+		push(stack, temp2/temp1);
 	}
 	else if(op=='$'){
-		printf("Result: %f\n", pop(stack));
+		printf("\nResult: %f\nSTACK RESET\n", pop(stack));
 		clear(stack);
 	}
 	else{
@@ -104,16 +111,16 @@ int main(){
 		switch(choice){
 			case 1:
 				choice=0;
-				printf("Enter value: ");
+				//printf("Enter value: ");
 				scanf("%f", &val);
 				push(&pf, val);
 				break;			
 			case 2:
 				choice=0;
-				printf("Enter operator: ");
+				//printf("Enter operator: ");
 				getchar(); //reject CRLF from ENTER key
 				op = getchar();
-				operate(&pf, op, &STAT);
+				operate(&pf, op, &STAT); //STAT allows for handling errors
 				if(STAT){
 					STAT=0;
 					continue;
