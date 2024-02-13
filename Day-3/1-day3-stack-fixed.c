@@ -3,6 +3,7 @@
 
 #define UNDERFLOW(s) (((s)->top)==(-1)?(1):(0))
 #define OVERFLOW(s) (((s)->top)==(((s)->length)-1)?(1):(0))
+#define MENU "\nOptions\n1. Push to stack\n2. Pop from stack\n3. Quit\nEnter choice: "
 
 //fixed memory implementation
 
@@ -52,14 +53,27 @@ int pop(stack* s){
 }
 
 int main(){
-	stack S1 = newStack(10);
-	push(&S1, 1);
-	push(&S1, 2);
-	push(&S1, 3);
-	//display(&S1);
-	pop(&S1);
-	pop(&S1);
-	pop(&S1);
-	pop(&S1);
-	return 0;
+	int ch, len, item;
+	stack S;
+	printf("Enter length of stack: ");
+	scanf("%d", &len);
+	S = newStack(len);
+	while(1){
+		printf(MENU);
+		scanf("%d", &ch);
+		switch(ch){
+			case 1:
+				printf("Enter value to be pushed: ");
+				scanf("%d", &item);
+				push(&S, item);
+				break;
+			case 2:
+				item = pop(&S);
+				//printf("Popped value %d from stack", item);
+				break;
+			default:
+				printf("Quitting...");
+				return 0;
+		}
+	}
 }
