@@ -3,4 +3,5 @@
 *.docx
 *.pdf
 *.txt
+*.tmp
 /.vscode
