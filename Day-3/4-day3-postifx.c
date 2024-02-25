@@ -118,7 +118,7 @@ int main(){
 			case 2:
 				choice=0;
 				//printf("Enter operator: ");
-				getchar(); //reject CRLF from ENTER key
+				getchar(); //rejects ENTER key
 				op = getchar();
 				operate(&pf, op, &STAT); //STAT allows for handling errors
 				if(STAT){
