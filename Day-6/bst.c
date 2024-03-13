@@ -65,10 +65,7 @@ void insert(bstnode** root, int n){
 	newNode->lchild = NULL;
 	newNode->rchild = NULL;
 	newNode->data = n;
-	if(!(*root)){
-		*root = newNode;
-		printf("e");
-	}
+	if(!(*root)) *root = newNode;
 	else if(n < (*root)->data){
 		if((*root)->lchild == NULL) (*root)->lchild = newNode;
 		else insert(&((*root)->lchild), n);
@@ -82,10 +79,15 @@ void insert(bstnode** root, int n){
 void delete(bstnode** root, int key){
 	int temp;
 	bstnode *m, *p, *p2, *s;
-	if(!(*root)) return;
 	m = search(*root, key);
 	if(m) p = parent(*root, m);
+	else{
+		printf("\nCould not find the node in tree.\n");
+		return;
+	}
 	if(!p){
+		free(*root);
+		*root = NULL;
 		return;
 	}
 	if(!m->lchild && !m->rchild){
