@@ -43,7 +43,7 @@ bstnode* parent(bstnode* root, bstnode* child){
 		if(!p) p = parent(root->rchild, child);
 		return p;
 	}
-} //find paeent of node
+} //find parent of node
 
 bstnode* minVal(bstnode* root){
 	if(root){
