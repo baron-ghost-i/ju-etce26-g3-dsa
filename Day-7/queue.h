@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #define UNDERFLOW(q) (((*(q))==NULL)?(1):(0))
 
-typedef struct btnode{
-	int data;
-	int lchild;
-	int rchild;
-} btnode; //defined Binary Tree node for typecasting
-
 typedef struct qnode{
 	int data;
 	struct qnode* next;
