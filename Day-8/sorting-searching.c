@@ -163,29 +163,3 @@ int main(){
 		}
 	}
 }
-/*
-int main(){
-	int l, b;
-	
-	int test1[10] = {1,0,5,2,3,4,9,7,6,8};
-	int test2[10] = {1,0,5,2,3,4,9,7,6,8};
-	int test3[10] = {5, 100, 55, 34, 1334, 14, 502, 111, 999, 0};
-
-	printArray(test1, 10);
-	selection(test1, 10);
-	printArray(test1, 10);
-	
-	printArray(test2, 10);
-	bubble(test2, 10);
-	printArray(test2, 10);
-	
-	printArray(test3, 10);
-	insertion(test3, 10);
-	printArray(test3, 10);
-	
-	l = linear(test3, 10, 1);
-	b = bin(test3, 10, 100);
-	
-	return 0;
-}
-*/
